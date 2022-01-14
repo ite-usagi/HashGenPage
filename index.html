@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SHA-512 HashGen</title>
+        <meta charset="UTF-8"/>
+        <meta name="robots" content="noindex,nofollow"/>
+        <meta name="format-detection" content="email=no,telephone=no,address=no" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@600&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 class="ti">SHA-512 HashGen</h1>
+            <input id="str" class="inp" type="password" autofocus="true" autocomplete="off" onChange="return hashGen()">
+        
+            <div class="rBox"><p id="result"></p></div>
+            <div class="cBox"><p id="copied" style="display: none;">Copied to clipboard</p></div>
+        </div>
+        <script>
+            function hashGen() {
+                crypto.subtle.digest('SHA-512', new TextEncoder().encode(str.value)).then(hash => {
+                    result.innerText = hashToHex(hash)
+                })
+            }
+            function hashToHex(buffer) {
+                const byteArray = new Uint8Array(buffer);
+                const hexCodes = [...byteArray].map(value => {
+                    const hexCode = value.toString(16);
+                    const paddedHexCode = hexCode.padStart(2, '0');
+                    return paddedHexCode;
+                });
+                return hexCodes.join('');
+            }
+            function copyResult() {
+                let range = document.createRange();
+                range.selectNodeContents(result);
+                let selection = document.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand("copy");
+
+                document.getElementById("copied").style.display = "inline";
+                timer = setTimeout(function() {
+                    document.getElementById("copied").style.display = "none";
+                }, 3000);
+            }
+            let str = document.getElementById("str");
+            str.addEventListener('input', hashGen);
+            let result = document.getElementById("result");
+            result.addEventListener("click", copyResult);
+        </script>
+        <link rel="stylesheet" href="main.css"/>
+    </body>
+</html>

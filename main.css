@@ -1,0 +1,55 @@
+html, body {
+  height: 100%;
+}
+body {
+  background-color: #15202b;
+  color:  white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Spartan', sans-serif;
+}
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+}
+.ti {
+  height: 3%;
+  color: orange;
+  font-size: 40px;
+}
+.inp {
+  border: 3px solid white;
+  border-radius: 0.67em;
+  padding: 0.5em;
+  background-color: #15202b;
+  width: 800px;
+  height: 50px;
+  font-size: 1em;
+  line-height: 1.2;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+.rBox {
+  width: 770px;
+  height: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Ubuntu Mono', monospace;
+  word-break: break-all;
+  font-size: 24px;
+}
+.cBox {
+  height: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: orange;
+  font-size: 16px;
+}
